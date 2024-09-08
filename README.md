@@ -26,6 +26,7 @@ This project is a Google Apps Script-based automated response and invoice genera
 **Mail.gs**
 
 ***Purpose:*** Manages the email sending functionality. This script is used to send emails with or without attachments.
+
 ***Key Function:*** mail(email,subject,message,attachment,name) - Sends an email to the specified address with or without PDF attachments, depending on the parameters.
 
 **Customer Code.gs**
