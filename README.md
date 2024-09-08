@@ -15,6 +15,7 @@ This project is a Google Apps Script-based automated response and invoice genera
 **Submission.gs**
 
 ***Purpose:*** Handles form submission. Once a customer submits the Google Form, this script is triggered. It generates an order confirmation email containing the user's details (name, student ID, payment method) and sends it to the provided email address.
+
 ***Key Function:*** submit_mail(e) - Sends the confirmation email using the customer’s data from the form submission. As this function is listing an envet and it need to be triggred on Form Submit. To do thatyou have to go to Triggers Options on the left, then click on "Add Triggers", then choose the function name, source should be from spreadsheet and event type should be "On form submit".
 
 
