@@ -9,7 +9,7 @@ function Send_Mail()
   {
     row.forEach((x) =>
     {
-      var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Invoice");
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Add Sheet Name");
       var Code = sheet.getRange(x,6).getValue();
       var date = sheet.getRange(x,1).getValue();
       var Date = Utilities.formatDate(date, "GTM+6", "dd/MM/yyyy");
