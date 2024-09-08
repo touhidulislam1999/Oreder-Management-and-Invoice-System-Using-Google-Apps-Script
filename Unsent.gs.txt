@@ -1,7 +1,7 @@
 function find_without_tick()
 {
   var out = [];
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Invoice");
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Add Sheet Name");
   for(var i = 2;i<=sheet.getLastRow();i++)
     if(sheet.getRange(i,7).getValue()=="Unsent" && sheet.getRange(i,2).getValue()!="")
       out.push(i);
