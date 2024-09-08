@@ -1,0 +1,7 @@
+function onOpen(e)
+{
+  SpreadsheetApp.getUi()
+  .createMenu('Sent Mail')
+  .addItem('Sent','Send_Mail')
+  .addToUi();
+}
