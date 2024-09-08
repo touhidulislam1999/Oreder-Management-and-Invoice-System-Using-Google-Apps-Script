@@ -1,0 +1,19 @@
+function code_generator() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Invoice");
+  var row = 0;
+  for(var i=2;i<=sheet.getLastRow();i++){
+    if(sheet.getRange(i,7).getValue()=="Unsent" && sheet.getRange(i,2).getValue()!="")
+      row=i; 
+  }
+  if(row==2){
+    var value="Test1";
+    sheet.getRange(row,6).setValue(value);
+  }
+  else{
+    var code = sheet.getRange(row-1,6).getValue();
+    Logger.log(code);
+    var number = code.substring(4);
+    code=code.substring(0,4)+(parseInt(number)+1).toString();
+    sheet.getRange(row,6).setValue(code);
+  }
+}

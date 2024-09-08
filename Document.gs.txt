@@ -1,0 +1,32 @@
+function make_PDF(Code,Date,Name,Email,Method,Details,Amount){
+  const pdfFolder = DriveApp.getFolderById("1XeCaZ17q8q8abalDLbDlLNpLkNPOq_Ys");
+  const tempDocFolder = DriveApp.getFolderById("1sdCJdmI-YAoW5ErDfOmdxAFXq5Xl-hHk");
+  const templateDoc = DriveApp.getFileById("1dm_UqeQCY-K0LZ2tQuoM0QM4Fm--VdGjB0P6sHe10Cs");
+
+
+  const newTempFile = templateDoc.makeCopy(tempDocFolder);
+
+  const openDoc = DocumentApp.openById(newTempFile.getId());
+  const body = openDoc.getBody();
+  body.replaceText("{code}",Code);
+  body.replaceText("{date}",Date);
+  body.replaceText("{name}",Name);
+  body.replaceText("{email}",Email);
+  body.replaceText("{type}","Credit");
+  body.replaceText("{method}",Method);
+  body.replaceText("{details}",Details);
+  body.replaceText("{amount}",Amount);
+  body.replaceText("{due}",0);
+  body.replaceText("{total}",Amount);
+
+  openDoc.saveAndClose();
+
+  const boldPDF = newTempFile.getAs(MimeType.PDF);
+  const pdfFile = pdfFolder.createFile(boldPDF).setName("Invoice No: "+Code);
+
+  var deleteFolder = DriveApp.getFolderById("1sdCJdmI-YAoW5ErDfOmdxAFXq5Xl-hHk");
+  var delfiles = deleteFolder.getFiles()
+  while(delfiles.hasNext())
+    delfiles.next().setTrashed(true);
+  return pdfFile;
+}

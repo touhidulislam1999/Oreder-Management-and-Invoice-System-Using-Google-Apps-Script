@@ -1,0 +1,19 @@
+function mail(email,subject,message,attachment,name){
+  if(attachment){
+    MailApp.sendEmail({
+    to: email,
+    subject: subject,
+    htmlBody: message,
+    attachments: [attachment],
+    name: name
+  });
+  }
+  else{
+    MailApp.sendEmail({
+    to: email,
+    subject: subject,
+    htmlBody: message,
+    name: name
+  });
+  }
+}

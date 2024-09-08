@@ -1,0 +1,48 @@
+function submit_mail(e) {
+  code_generator();
+  // Get the email address from the form response
+  var email = e.values[1];  // Adjust the index based on your form fields order. If email is not the second column, change the index accordingly.
+  var name = e.values[2];
+  var std_id = e.values[3];
+  var method = e.values[4];
+  var title = 'Order Details';
+  
+  // Set the email subject and body
+  var subject = "Confirmation: We Received Your Order Submission!";
+  var message=`
+              <div style="text-align: center; font-family:Georgia,serif;">
+              <h1 style="font-size: 30px"><i>Asslamualaikum</i></h>
+              <h1 style="color: Blue; font-size: 20px"><i>${name},</i></h1>
+              <p style="font-size: 15px">We have received your Order!</p>
+              <p style="font-size: 15px">Your oder details is below:</p>
+              
+              <table style="font-size:22px" align="center" border="1">
+                <thead>
+                  <tr>
+                    <th style="color:green" colspan="2">
+                      <b>"Your Event Name"</b>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr align="center">
+                    <td><b>Name</b></td>
+                    <td><i>${name}</i></td>
+                  </tr>
+
+                  <tr align="center">
+                    <td><b>Student ID</b></td>
+                    <td><i>${std_id}</i></td>
+                  </tr>
+
+                  <tr align="center">
+                    <td><b>Payment Method</b></td>
+                    <td><i>${method}</i></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p style="font-size:20px">Your payment invoice will be sent to you shortly.</p>          
+              <p style="font-size: 15px"><strong><i><a href="https://touhidul.com/">Touhidul Islam</a></i></strong></p>`;
+
+  mail(email,subject,message,attachment=null,title);
+}

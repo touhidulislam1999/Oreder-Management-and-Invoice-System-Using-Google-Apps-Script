@@ -1,0 +1,44 @@
+function Send_Mail()
+{
+  var row = find_without_tick();
+  var no_of_mail=0;
+  var Amount = 500;
+  if(row.length == 0)
+    SpreadsheetApp.getUi().alert('No mail left to sent');
+  else
+  {
+    row.forEach((x) =>
+    {
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Invoice");
+      var Code = sheet.getRange(x,6).getValue();
+      var date = sheet.getRange(x,1).getValue();
+      var Date = Utilities.formatDate(date, "GTM+6", "dd/MM/yyyy");
+      var Name = sheet.getRange(x,3).getValue();
+      var Email = sheet.getRange(x,2).getValue();
+      var Method = sheet.getRange(x,5).getValue();
+      var Details = "Testing Fee";
+      
+
+      var message=`
+              <div style="text-align: center; font-family:Georgia,serif;">
+              <h1 style="font-size: 30px"><i>Asslamualaikum</i></h>
+              <h1 style="color: Green; font-size: 20px"><i>Dear ${Name},</i></h1>
+              <p style="font-size: 15px">We have received your amount of <span style="color: red"><b><i>${Amount}/- BDT</i></b></span> through <span style="color: orange"><b><i>${Method}</i></b></span><p>
+              <p style="font-size: 15px">Please find the attached invoice in the mail.</p>
+              <p style="font-size: 15px">From,</p>
+              <p style="font-size: 15px"><strong><i><a href="https://touhidul.com/">Touhidul Islam</a></i></strong></p></div>`;
+    
+    // Send mail with attachemnts
+    var Subject = "Payment Confirmation: We Received your Payment!";
+    var name = "Testing Complete!";
+    mail(Email,Subject,message,make_PDF(Code,Date,Name,Email,Method,Details,Amount),name);
+    sheet.getRange(x,7).setValue('Sent');
+    no_of_mail++;
+    })
+  }
+  // UI in Spread Sheet
+  if(no_of_mail==1)
+      return SpreadsheetApp.getUi().alert(no_of_mail+" Mail Sent!");
+    else
+      return SpreadsheetApp.getUi().alert(no_of_mail+" Mails Sent!");
+}
