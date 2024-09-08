@@ -32,21 +32,25 @@ This project is a Google Apps Script-based automated response and invoice genera
 **Customer Code.gs**
 
 ***Purpose:*** Generates unique order codes for each customer entry. It ensures that each order in the Google Sheet has a unique identifier, which is necessary for invoice tracking and generation.
+
 ***Key Function:*** code_generator() - Generates unique order codes for new entries in the Google Sheet.
 
 **Unsent.gs**
 
 ***Purpose:*** Finds orders that have not been sent yet. This script scans the Google Sheet to identify rows where invoices are marked as "Unsent" and returns the relevant rows.
+
 ***Key Function:*** find_without_tick() - Returns a list of rows with unsent orders.
 
 **Document.gs**
 
 ***Purpose:*** Creates the PDF invoice using a template. This script pulls customer data from the Google Sheet and populates a pre-defined template with order details to generate a PDF invoice.
+
 ***Key Function:*** make_PDF(Code,Date,Name,Email,Method,Details,Amount) - Creates the PDF invoice by replacing placeholders in the template with actual customer data.
 
 **Main.gs**
 
 ***Purpose:*** Sends PDF invoices via email to customers whose orders are marked as "Unsent." After sending, it updates the status to "Sent" in the Google Sheet.
+
 ***Key Function:*** Send_Mail() - Handles the process of sending the invoice email and updating the order status.
 
 ![image](https://github.com/user-attachments/assets/1039b88a-3cc2-4f6b-83c0-313501cd6c35)
@@ -55,6 +59,7 @@ This project is a Google Apps Script-based automated response and invoice genera
 **Button.gs**
 
 ***Purpose:*** Adds a custom menu in the Google Sheet to trigger the sending of invoices. The "Send" button in the UI allows users to manually trigger the sending of all unsent invoices.
+
 ***Key Function:*** onOpen(e) - Adds the "Send Mail" menu option when the Google Sheet is opened.
 
 ![image](https://github.com/user-attachments/assets/a2b507ca-4099-4df0-bb10-7d275c524d73)
