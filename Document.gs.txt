@@ -19,15 +19,15 @@ function make_PDF(Code,Date,Name,Email,Method,Details,Amount){
   body.replaceText("{due}",0);
   body.replaceText("{total}",Amount);
 
-// Adding QR
+  // Adding QR
   var qrDataString=Name+", "+Method+", "+Code;
-  var paragraph = body.appendParagraph("");
+  var paragraph = body.appendParagraph(""); // Setting the horizontal position of the QR at the end for puutting it oat the top it should be (0,"")
   var qrImageBlob=getQrImageBlob(qrDataString);
   var posImage = paragraph.addPositionedImage(qrImageBlob)
-    .setTopOffset(0)
-    .setLeftOffset(400)
-    .setHeight(100)
-    .setWidth(100);
+    .setTopOffset(0) // at the top
+    .setLeftOffset(400) // Setting the vertical pposition
+    .setHeight(100) // height of the image
+    .setWidth(100); // width o the image
 
   openDoc.saveAndClose();
 
