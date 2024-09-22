@@ -1,0 +1,5 @@
+function getQrImageBlob(qrDataString, size=100) {
+  var qrCodeUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size + '&data=' + encodeURIComponent(qrDataString);
+  var qrImage = UrlFetchApp.fetch(qrCodeUrl);
+  return qrImage.getBlob();
+}
