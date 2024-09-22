@@ -19,6 +19,16 @@ function make_PDF(Code,Date,Name,Email,Method,Details,Amount){
   body.replaceText("{due}",0);
   body.replaceText("{total}",Amount);
 
+// Adding QR
+  var qrDataString=Name+", "+Method+", "+Code;
+  var paragraph = body.appendParagraph("");
+  var qrImageBlob=getQrImageBlob(qrDataString);
+  var posImage = paragraph.addPositionedImage(qrImageBlob)
+    .setTopOffset(0)
+    .setLeftOffset(400)
+    .setHeight(100)
+    .setWidth(100);
+
   openDoc.saveAndClose();
 
   const boldPDF = newTempFile.getAs(MimeType.PDF);
