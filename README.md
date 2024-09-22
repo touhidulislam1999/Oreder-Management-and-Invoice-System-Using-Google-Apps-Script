@@ -55,6 +55,9 @@ This project is a Google Apps Script-based automated response and invoice genera
 
 ![image](https://github.com/user-attachments/assets/1039b88a-3cc2-4f6b-83c0-313501cd6c35)
 
+![image](https://github.com/user-attachments/assets/8aea6a0f-ed90-47e9-95d0-828c20429921)
+
+
 
 **Button.gs**
 
